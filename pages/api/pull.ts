@@ -10,15 +10,15 @@ export default async function handler(
   console.log(req.body);
   const { ts } = req.body;
 
-  let content = await get(String(ts));
+  let data = await get(String(ts));
 
   for (let i = 0; i < 30; i++) {
-    if (content) {
-      return res.status(200).json({ content });
+    if (data) {
+      return res.status(200).json(data);
     }
 
     await wait(3000);
-    content = await get(ts);
+    data = await get(ts);
   }
 }
 

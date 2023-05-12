@@ -2,10 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import request from "@/services/request";
 
 const getPull = async (ts: number | null) => {
-  const parsed: { content: string } = await request(`/api/pull/`, {
-    method: "POST",
-    body: JSON.stringify({ ts: String(ts) }),
-  });
+  const parsed: { content: string; error?: string } = await request(
+    `/api/pull`,
+    {
+      method: "POST",
+      body: JSON.stringify({ ts: String(ts) }),
+    }
+  );
 
   return parsed;
 };

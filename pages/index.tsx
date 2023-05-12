@@ -59,6 +59,9 @@ export default function Home() {
                     {(error as Error).message}
                   </strong>
                 )}
+                {revised && revised.error && (
+                  <strong className={styles.error}>{revised.error}</strong>
+                )}
                 <button disabled={fetching || tooLong} onClick={handleSubmit}>
                   Прибрати суржик
                 </button>

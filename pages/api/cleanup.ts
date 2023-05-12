@@ -27,10 +27,8 @@ export default async function handler(
     },
   ];
 
+  const ts = new Date().getTime();
   try {
-    const ts = new Date().getTime();
-    console.log({ ts });
-
     res.status(200).json({ ts });
 
     const response = await openai.createChatCompletion({
@@ -39,12 +37,17 @@ export default async function handler(
       messages,
     });
     const { message } = response.data.choices[0];
-    const { content } = message || {};
-    console.log({ fromgpt: content });
-    await set(ts.toString(), content || "");
+    const { content = "" } = message || {};
+
+    console.log(response.data.choices);
+
+    await set(ts.toString(), { content });
   } catch (error) {
-    // @ts-ignore
     console.error(error);
+    await set(ts.toString(), {
+      error: (error as Error).message,
+      content: "",
+    });
     res.status(400).json({ error });
   }
 }
