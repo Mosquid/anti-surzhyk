@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import { useState, MouseEvent, useMemo } from "react";
 import { usePull } from "@/hooks/usePull";
 import BeforeAfter from "@/components/beforeAfter";
+import { error } from "console";
 
 export default function Home() {
   const [jobId, setJobId] = useState<number | null>(null);
@@ -12,7 +13,7 @@ export default function Home() {
   const [text, setText] = useState(
     "На прошлой неділі у вівторок решив написати цю програму"
   );
-  const { data, isLoading, isError, mutateAsync } = useCleanup(text);
+  const { data, isLoading, error, isError, mutateAsync } = useCleanup(text);
 
   const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -46,6 +47,11 @@ export default function Home() {
                 <strong className={styles.error}>
                   Шановний, поводьтеся скромніше. Тут вже {text.length} літер
                   назбиралося
+                </strong>
+              )}
+              {isError && (
+                <strong className={styles.error}>
+                  {(error as Error).message}
                 </strong>
               )}
               <button disabled={fetching || tooLong} onClick={handleSubmit}>

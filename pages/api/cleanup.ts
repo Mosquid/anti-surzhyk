@@ -18,7 +18,12 @@ export default async function handler(
   console.log({ text });
   const messages: Array<ChatCompletionRequestMessage> = [
     {
-      content: `Hey. I have a ukrainian text which contains surzhuk and russian words and perhaps incorrect grammar. I need to translate it to ukrainian. Could you help me? Here is the text: ${text}. The message you send back to me should not contain any additional information and should only provide a translated version of the input text.`,
+      content: `Hey. I have a ukrainian text which contains surzhuk and russian words and perhaps incorrect grammar. I need to translate it to ukrainian. Could you help me? Here is the text: 
+      ---
+      ${text}. 
+      ---
+      ###
+      The message you send back to me should not contain any additional information and should only provide a translated version of the input text.`,
       role: "user",
     },
   ];
