@@ -80,6 +80,13 @@ export default function Home() {
         </div>
 
         <div className={styles.grid}></div>
+        <footer className={styles.footer}>
+          &copy;{" "}
+          <a href="https://github.com/mosquid" target="_blank">
+            Mosquid
+          </a>
+          &nbsp;& GPT-3-turbo
+        </footer>
       </main>
     </>
   );
