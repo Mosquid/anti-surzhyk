@@ -6,6 +6,7 @@ import { useState, MouseEvent, useMemo } from "react";
 import { usePull } from "@/hooks/usePull";
 import BeforeAfter from "@/components/beforeAfter";
 import { error } from "console";
+import Head from "next/head";
 
 export default function Home() {
   const [jobId, setJobId] = useState<number | null>(null);
@@ -27,54 +28,59 @@ export default function Home() {
   }, [text]);
 
   return (
-    <main className={styles.main}>
-      <div className={styles.description}></div>
-      <h1>Десуржифікатор</h1>
-      <h3>Прибирання суржику з текстів</h3>
-      <div className={styles.center}>
-        <form className={styles.form}>
-          <textarea
-            className={styles.textarea}
-            disabled={isLoading}
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          ></textarea>
-          {fetching ? (
-            <strong>Поводьтеся чемно, йде десуржифікація &#8987;</strong>
-          ) : (
-            <>
-              {tooLong && (
-                <strong className={styles.error}>
-                  Шановний, поводьтеся скромніше. Тут вже {text.length} літер
-                  назбиралося
-                </strong>
-              )}
-              {isError && (
-                <strong className={styles.error}>
-                  {(error as Error).message}
-                </strong>
-              )}
-              <button disabled={fetching || tooLong} onClick={handleSubmit}>
-                Прибрати суржик
-              </button>
-            </>
-          )}
-        </form>
-
-        {revised && (
-          <div className={styles.revised}>
-            <h3>Десуржифіковано</h3>
+    <>
+      <Head>
+        <title>Десуржифікатор - позбався суржику</title>
+      </Head>
+      <main className={styles.main}>
+        <div className={styles.description}></div>
+        <h1>Десуржифікатор</h1>
+        <h3>Прибирання суржику з текстів</h3>
+        <div className={styles.center}>
+          <form className={styles.form}>
             <textarea
-              readOnly={true}
               className={styles.textarea}
-              value={revised.content}
-            />
-          </div>
-        )}
-        <BeforeAfter />
-      </div>
+              disabled={isLoading}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            ></textarea>
+            {fetching ? (
+              <strong>Поводьтеся чемно, йде десуржифікація &#8987;</strong>
+            ) : (
+              <>
+                {tooLong && (
+                  <strong className={styles.error}>
+                    Шановний, поводьтеся скромніше. Тут вже {text.length} літер
+                    назбиралося
+                  </strong>
+                )}
+                {isError && (
+                  <strong className={styles.error}>
+                    {(error as Error).message}
+                  </strong>
+                )}
+                <button disabled={fetching || tooLong} onClick={handleSubmit}>
+                  Прибрати суржик
+                </button>
+              </>
+            )}
+          </form>
 
-      <div className={styles.grid}></div>
-    </main>
+          {revised && (
+            <div className={styles.revised}>
+              <h3>Десуржифіковано</h3>
+              <textarea
+                readOnly={true}
+                className={styles.textarea}
+                value={revised.content}
+              />
+            </div>
+          )}
+          <BeforeAfter />
+        </div>
+
+        <div className={styles.grid}></div>
+      </main>
+    </>
   );
 }
