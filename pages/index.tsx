@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}></div>
-      <h1>Десуржикатор</h1>
+      <h1>Десуржифікатор</h1>
       <h3>Прибирання суржику з текстів</h3>
       <div className={styles.center}>
         <form className={styles.form}>
@@ -40,7 +40,7 @@ export default function Home() {
             onChange={(e) => setText(e.target.value)}
           ></textarea>
           {fetching ? (
-            <strong>Поводьтеся чемно, йде десуржикація &#8987;</strong>
+            <strong>Поводьтеся чемно, йде десуржифікація &#8987;</strong>
           ) : (
             <>
               {tooLong && (

@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   console.log(req.body);
   const { ts } = req.body;
-  console.log({ pullTs: ts });
+
   let content = await get(String(ts));
 
   for (let i = 0; i < 30; i++) {
