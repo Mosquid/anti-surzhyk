@@ -15,7 +15,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { text } = req.body;
-  console.log({ text });
   const messages: Array<ChatCompletionRequestMessage> = [
     {
       content: `Hey. I have a ukrainian text which contains surzhuk and russian words and perhaps incorrect grammar. I need to translate it to ukrainian. Could you help me? Here is the text: 
