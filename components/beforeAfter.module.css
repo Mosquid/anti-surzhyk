@@ -1,0 +1,16 @@
+.main {
+  color: #1c1c1c;
+  position: relative;
+  background-color: #f7f7f753;
+  display: flex;
+  max-width: 800px;
+  width: 100%;
+  padding: 25px;
+  border-radius: 8px;
+}
+.col {
+  padding: 10px;
+}
+.col + .col {
+  border-left: 1px solid #000;
+}
