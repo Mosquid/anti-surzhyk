@@ -17,7 +17,7 @@ export default async function handler(
       return res.status(200).json({ content });
     }
 
-    await wait(1000);
+    await wait(3000);
     content = await get(ts);
   }
 }

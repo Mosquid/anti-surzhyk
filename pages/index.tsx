@@ -63,7 +63,7 @@ export default function Home() {
 
         {revised && (
           <div className={styles.revised}>
-            <h3>Десуржиковано</h3>
+            <h3>Десуржифіковано</h3>
             <textarea
               readOnly={true}
               className={styles.textarea}
