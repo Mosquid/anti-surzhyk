@@ -9,6 +9,10 @@ const overlord = new GPTOverlord({
   apiKey: API_KEY,
   model: "gpt-3.5-turbo",
   temperature: 0.1,
+  schema: {
+    status: "success | error",
+    data: "<corrected_text>",
+  },
 });
 
 export default async function handler(
@@ -16,12 +20,9 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { text } = req.body;
-  const prompt = `I have a ukrainian text which contains surzhuk and russian words and perhaps incorrect grammar. I need you to proofread it fix any mistakes. Here is the text: 
+  const prompt = `I have a ukrainian text which contains surzhuk and russian words and perhaps incorrect grammar. I need your help fixing it. Please replace the russian words and grammar where possible. Here is the text: 
       ---
-      ${text}. 
-      ---
-      You should strictly follow the specified schema. Any additional text outside the schema will cause errors on the receiving node.
-      The entire answer must be a single JSON object. Any additional text should be ommited. No comments allowed`;
+      ${text}`;
 
   const ts = new Date().getTime();
   try {
